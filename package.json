@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "eslint": "^8.36.0",
+    "rickmortyapi": "^2.3.0"
+  },
+  "name": "ram-2",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
