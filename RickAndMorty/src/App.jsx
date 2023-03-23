@@ -10,11 +10,13 @@ function App() {
     return axios.get(import.meta.env.VITE_BASE_URL);
   });
 
+  const navBarKeys = Object.keys(data?.data || {});
+
   return (
     <div>
       <div className="navBar">
         <img src={mainLogo} alt="Rick and Morty" />
-        <Buttons data={data?.data} />
+        <Buttons item={navBarKeys} />
         <ThemeSwitch />
       </div>
     </div>
