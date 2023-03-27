@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.navBar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.navBar > img {
+  width: 230px;
+  margin-left: 16px;
+}
+
