@@ -9,8 +9,7 @@
   justify-content: space-between;
   margin-top: 20px;
 }
-.navBar > img {
+.navBar > a > img {
   width: 230px;
   margin-left: 16px;
 }
-
