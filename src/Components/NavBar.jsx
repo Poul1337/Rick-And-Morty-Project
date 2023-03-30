@@ -50,8 +50,8 @@ const NavBar = ({ data }) => {
   ];
   const randomPlay = () => {
     const playNow = soundsList[Math.floor(Math.random() * soundsList.length)];
-    console.log(playNow);
-    return playNow;
+    const sound = new Audio(playNow).play();
+    return sound;
   };
 
   return (
@@ -62,7 +62,12 @@ const NavBar = ({ data }) => {
       }}
     >
       <div style={navBar}>
-        <Link to="/" onClick={() => new Audio(audio9).play()}>
+        <Link
+          to="/"
+          onClick={() => {
+            new Audio(audio9).play();
+          }}
+        >
           <img style={imgStyle} src={mainLogo} alt="Rick and Morty" />
         </Link>
 
@@ -78,7 +83,7 @@ const NavBar = ({ data }) => {
                   fontSize: '20px',
                 }}
                 onClick={() => {
-                  new Audio(randomPlay()).play();
+                  randomPlay();
                 }}
               >
                 {item}
