@@ -71,7 +71,12 @@ const NavBar = ({ data }) => {
             <Link to={item} key={v4()} style={buttonsStyle}>
               <Button
                 variant="text"
-                style={{ color: '#52CAD2', fontWeight: '600' }}
+                style={{
+                  color: '#52CAD2',
+                  fontWeight: '600',
+                  fontFamily: 'Delicious Handrawn, cursive',
+                  fontSize: '20px',
+                }}
                 onClick={() => {
                   new Audio(randomPlay()).play();
                 }}
