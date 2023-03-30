@@ -1,7 +1,23 @@
-import mainPage from '../img/mainPagePic.webp';
+import rotatePic from '../img/rotatePic.png';
 
 const Home = () => {
-  return <h1>home</h1>;
+  const homePageStyle = {
+    justifyContent: 'center',
+    display: 'flex',
+    marginTop: '50px',
+    flexDirection: 'column',
+    alignItems: 'center',
+  };
+
+  return (
+    <div style={homePageStyle}>
+      <img src={rotatePic} className="rotate"></img>
+      <h1 style={{ fontFamily: 'Delicious Handrawn, cursive' }}>
+        “Morty, I need your help on an adventure. Eh, “”need”” is a strong word.
+        We need door stops, but a brick would work too.”
+      </h1>
+    </div>
+  );
 };
 
 export default Home;

@@ -1,5 +1,4 @@
 import mainLogo from '../img/mainLogo.png';
-import homePage from '../img/mainPagePic.webp';
 import ThemeSwitch from './ThemeSwitch';
 import { v4 } from 'uuid';
 import { Link } from 'react-router-dom';
