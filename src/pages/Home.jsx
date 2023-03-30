@@ -12,7 +12,9 @@ const Home = () => {
   return (
     <div style={homePageStyle}>
       <img src={rotatePic} className="rotate"></img>
-      <h1 style={{ fontFamily: 'Delicious Handrawn, cursive' }}>
+      <h1
+        style={{ fontFamily: 'Delicious Handrawn, cursive', marginTop: '45px' }}
+      >
         “Morty, I need your help on an adventure. Eh, “”need”” is a strong word.
         We need door stops, but a brick would work too.”
       </h1>
