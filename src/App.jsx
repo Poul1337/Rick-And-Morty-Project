@@ -3,15 +3,12 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import NavBar from './Components/NavBar';
 import { Route, Routes } from 'react-router';
-import useLogic from './fetchCorrectData';
 import { Characters, Episodes, Home, Locations } from './pages';
 
 function App() {
   const { data } = useQuery('BaseUrlFetch', () => {
     return axios.get(import.meta.env.VITE_BASE_URL);
   });
-
-  useLogic();
 
   return (
     <div>
