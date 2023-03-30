@@ -1,4 +1,5 @@
-import { mainLogo } from '../img';
+import mainLogo from '../img/mainLogo.png';
+import homePage from '../img/mainPagePic.webp';
 import ThemeSwitch from './ThemeSwitch';
 import { v4 } from 'uuid';
 import { Link } from 'react-router-dom';
@@ -26,7 +27,12 @@ const NavBar = ({ data }) => {
   };
 
   return (
-    <div style={{ justifyContent: 'center', display: 'flex' }}>
+    <div
+      style={{
+        justifyContent: 'center',
+        display: 'flex',
+      }}
+    >
       <div style={navBar}>
         <Link to="/">
           <img style={imgStyle} src={mainLogo} alt="Rick and Morty" />
@@ -35,7 +41,12 @@ const NavBar = ({ data }) => {
         <Stack direction="row" spacing={5} paddingRight={20}>
           {Object.keys(data || {}).map((item) => (
             <Link to={item} key={v4()} style={buttonsStyle}>
-              <Button variant="text">{item}</Button>
+              <Button
+                variant="text"
+                style={{ color: '#52CAD2', fontWeight: '600' }}
+              >
+                {item}
+              </Button>
             </Link>
           ))}
         </Stack>
