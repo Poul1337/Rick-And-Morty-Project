@@ -1,0 +1,10 @@
+export { default as audio1 } from './after-you-cried-and-crapped-your-pants.mp3';
+export { default as audio2 } from './and-i-know-thats-not-a-popular-opinion.mp3';
+export { default as audio3 } from './anything-else.mp3';
+export { default as audio4 } from './boy-you-really-are-17.mp3';
+export { default as audio5 } from './cause-im-the-richest-rick-there-is.mp3';
+export { default as audio6 } from './i-cant-abide-bureaucracy-i-dont-like-being-told-where-to-go-and-what-to-do-i-consider-it-a-violation.mp3';
+export { default as audio7 } from './i-dont-know-how-much-i-dont-know-what-that-is-is-that-a-lot-is-it-a-little.mp3';
+export { default as audio8 } from './its-all-over-jerry.mp3';
+export { default as audio9 } from './its-time-to-go-back-to-our-lives.mp3';
+export { default as audio10 } from './regular-pancakes-are-already-shaped-like-flying-saucers.mp3';
