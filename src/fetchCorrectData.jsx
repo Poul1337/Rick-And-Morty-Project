@@ -12,6 +12,6 @@ const fetchCorrectData = () => {
     );
   });
 
-  return data.data.results;
+  return data?.data?.results;
 };
 export default fetchCorrectData;
