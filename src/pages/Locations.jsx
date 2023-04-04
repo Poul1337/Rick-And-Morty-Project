@@ -1,8 +1,21 @@
 import useLogic from '../fetchCorrectData';
+import CollapsibleTable from '../Components/CollapsibleTable'
+
+
 const Locations = () => {
   const data = useLogic();
-  console.log(data);
-  return <h1>Locations</h1>;
+  return <h1><CollapsibleTable 
+  firstTh='Name' 
+  secondTh='Type' 
+  thirdTh='Dimension' 
+  url='https://rickandmortyapi.com/api/location'
+  name="name"
+  status="type"
+  species="dimension"
+  firstDetail="Created"
+  firstDetailResult="created"
+
+  /></h1>;
 };
 
 export default Locations;
