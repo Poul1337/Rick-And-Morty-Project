@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -15,10 +14,9 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Checkbox from '@mui/material/Checkbox';
-import fetchCorrectData from '../fetchCorrectData';
+import SearchInput from './SearchInput';
 
 export default function CollapsibleTable(props) {
-  const [tableData, setTableData] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [characterData, setCharacterData] = useState(null);
@@ -33,12 +31,6 @@ export default function CollapsibleTable(props) {
       });
   };
 
-  // useEffect(() => {
-  //   fetch(`${props.url}`)
-  //     .then((response) => response.json())
-  //     .then((response) => setTableData(response.results));
-  // }, []);
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -52,11 +44,9 @@ export default function CollapsibleTable(props) {
     rowsPerPage -
     Math.min(rowsPerPage, props.data?.length - page * rowsPerPage);
 
-  console.log('tableData', tableData);
-  console.log('data', props.data);
-
   return (
-    <>
+    <div className="table">
+      <SearchInput />
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>
@@ -173,13 +163,13 @@ export default function CollapsibleTable(props) {
         <TablePagination
           rowsPerPageOptions={[5, 10, 20]}
           component="div"
-          count={props.data?.length}
+          count={props?.data?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </TableContainer>
-    </>
+    </div>
   );
 }

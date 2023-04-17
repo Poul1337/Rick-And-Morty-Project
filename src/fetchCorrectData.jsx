@@ -5,11 +5,12 @@ import { useLocation } from 'react-router-dom';
 const fetchCorrectData = () => {
   const location = useLocation().pathname;
 
-  const { data } = useQuery('correctData', () => {
+  const { data, isLoading } = useQuery('correctData', () => {
     return axios.get(
       `${import.meta.env.VITE_BASE_URL}${location.slice(0, -1)}`
     );
   });
-  return data?.data.results;
+
+  return [data?.data, isLoading];
 };
 export default fetchCorrectData;

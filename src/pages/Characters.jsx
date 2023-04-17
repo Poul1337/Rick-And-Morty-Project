@@ -1,24 +1,27 @@
 import useLogic from '../fetchCorrectData';
-import CollapsibleTable from '../Components/CollapsibleTable';
+import CollapsibleTable from '../Components/table/CollapsibleTable';
+import LoadingSpinner from '../Components/table/LoadingSpinner';
 
 const Characters = () => {
-  const data = useLogic();
+  const [data, isLoading] = useLogic();
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
   return (
-    <h1>
-      <CollapsibleTable
-        data={data}
-        firstTh="Name"
-        secondTh="Status"
-        thirdTh="Species"
-        name="name"
-        status="status"
-        species="species"
-        firstDetail="Gender"
-        secondDetail="Created"
-        firstDetailResult="gender"
-        secondDetailResult="created"
-      />
-    </h1>
+    <CollapsibleTable
+      data={data?.results}
+      firstTh="Name"
+      secondTh="Status"
+      thirdTh="Species"
+      name="name"
+      status="status"
+      species="species"
+      firstDetail="Gender"
+      secondDetail="Created"
+      firstDetailResult="gender"
+      secondDetailResult="created"
+    />
   );
 };
 
