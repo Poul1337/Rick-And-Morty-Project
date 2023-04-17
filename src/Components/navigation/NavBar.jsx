@@ -1,4 +1,4 @@
-import mainLogo from '../img/mainLogo.png';
+import mainLogo from '/src/img/mainLogo.png';
 import ThemeSwitch from './ThemeSwitch';
 import { v4 } from 'uuid';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ import {
   audio8,
   audio9,
   audio10,
-} from '../sounds';
+} from '../../sounds';
 
 const NavBar = ({ data }) => {
   const buttonsStyle = {
@@ -30,6 +30,7 @@ const NavBar = ({ data }) => {
     boxSizing: 'border-box',
     border: '1px black solid',
     borderRadius: '20px',
+    boxShadow: '2px 2px 6px #000000',
   };
   const imgStyle = {
     width: '220px',

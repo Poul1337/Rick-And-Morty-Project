@@ -1,7 +1,7 @@
 import './App.css';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import NavBar from './Components/NavBar';
+import NavBar from './Components/navigation/NavBar';
 import { Route, Routes } from 'react-router';
 import { Characters, Episodes, Home, Locations } from './pages';
 
