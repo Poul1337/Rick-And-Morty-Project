@@ -5,7 +5,7 @@ import axios from 'axios';
 const SearchResult = ({ open, setOpen, value }) => {
   const { data } = useQuery({
     queryKey: ['details'],
-    queruFn: () => {
+    queryFn: () => {
       return axios.get(
         `${import.meta.env.VITE_BASE_URL}/character/?name=${value}`
       );
