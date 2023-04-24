@@ -1,16 +1,16 @@
-import useLogic from '../fetchCorrectData';
+import useLogic from '../hooks/UseCorrectData';
 import CollapsibleTable from '../Components/table/CollapsibleTable';
 import LoadingSpinner from '../Components/table/LoadingSpinner';
 
 const Locations = () => {
-  const [data, isLoading] = useLogic();
+  const { data, isLoading } = useLogic();
 
   if (isLoading) {
     return <LoadingSpinner />;
   }
   return (
     <CollapsibleTable
-      data={data?.results}
+      data={data?.data?.results}
       firstTh="Name"
       secondTh="Type"
       thirdTh="Dimension"

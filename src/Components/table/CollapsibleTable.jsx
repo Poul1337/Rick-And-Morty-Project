@@ -14,7 +14,9 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Checkbox from '@mui/material/Checkbox';
-import SearchInput from './SearchInput';
+import SearchInput from '../input/SearchInput';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 export default function CollapsibleTable(props) {
   const [page, setPage] = useState(0);
@@ -23,7 +25,7 @@ export default function CollapsibleTable(props) {
   const [openRows, setOpenRows] = useState([]);
 
   const fetchCharacterData = (id) => {
-    fetch(`https://rickandmortyapi.com/api/characters/${id}`)
+    fetch(`${import.meta.env.VITE_BASE_URL}/${id}`)
       .then((response) => response.json())
       .then((response) => {
         setCharacterData(response);
