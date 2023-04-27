@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -15,14 +14,19 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Checkbox from '@mui/material/Checkbox';
-import fetchCorrectData from '../fetchCorrectData';
+import mainLogo from '../img/delete.png';
+
 
 export default function CollapsibleTable(props) {
-  const [tableData, setTableData] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [characterData, setCharacterData] = useState(null);
   const [openRows, setOpenRows] = useState([]);
+  const [checkedRows, setCheckedRows] = useState([]);
+
+
+
+  
 
   const fetchCharacterData = (id) => {
     fetch(`https://rickandmortyapi.com/api/characters/${id}`)
@@ -33,11 +37,7 @@ export default function CollapsibleTable(props) {
       });
   };
 
-  // useEffect(() => {
-  //   fetch(`${props.url}`)
-  //     .then((response) => response.json())
-  //     .then((response) => setTableData(response.results));
-  // }, []);
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -52,14 +52,30 @@ export default function CollapsibleTable(props) {
     rowsPerPage -
     Math.min(rowsPerPage, props.data?.length - page * rowsPerPage);
 
-  console.log('tableData', tableData);
-  console.log('data', props.data);
+    const handleSelect = (event, id) => {
+      const currentIndex = checkedRows.indexOf(id);
+      const newCheckedRows = [...checkedRows];
+    
+      if (currentIndex === -1) {
+        newCheckedRows.push(id);
+      } else {
+        newCheckedRows.splice(currentIndex, 1);
+      }
+    
+      setCheckedRows(newCheckedRows);
+    };
+
+
+
 
   return (
     <>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>
+                  <button className='btnDeleteSelected'>
+                  <img onClick={props.handleDeleteSelectedRows}  src={mainLogo} alt="delete" />
+                  </button>
             <TableRow>
               <TableCell />
               <TableCell>{props.firstTh}</TableCell>
@@ -74,11 +90,19 @@ export default function CollapsibleTable(props) {
                   page * rowsPerPage + rowsPerPage
                 )
               : props.data
-            )?.map((data) => (
+            )?.map((data, index) => (
               <>
-                <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+                <TableRow id={`${data.id}`} sx={{ '& > *': { borderBottom: 'unset' } }}>
                   <TableCell>
-                    <Checkbox color="default" />
+                  <input
+                  className='checkboxes'
+                  type="checkbox"
+                  value={data.id}
+                  color="default"
+                  onChange={(event) => handleSelect(event, data.id)}
+                  checked={checkedRows.indexOf(data.id) !== -1}
+                  onClick={props.getChecked}
+                />
                     <IconButton
                       aria-label="expand row"
                       size="small"
@@ -114,6 +138,9 @@ export default function CollapsibleTable(props) {
                   <TableCell>
                     {data.species || data.dimension || data.episode}
                   </TableCell>
+                  <button className='btnDelete'>
+                  <img className='btnDelete' onClick={props.handleDeleteRow}  src={mainLogo} alt="delete" />
+                  </button>
                 </TableRow>
 
                 <TableRow>

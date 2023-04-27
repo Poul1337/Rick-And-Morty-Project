@@ -3,15 +3,44 @@
   margin: 0;
 }
 
-.rotate {
-  width: 600px;
-  animation: rotation 4s infinite linear;
+
+
+.btnDelete {
+  display: flex;
+justify-content: center;
+align-items: start;
+  width: 35px;
+  height: 35px;
+  border: none;
+  padding: none;
+  margin-top: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+  appearance: none;
+  background-color: inherit;
+  
 }
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
+
+.btnDeleteSelected {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+    width: 15px;
+    height: 15px;
+    border: none;
+    padding: none;
+    margin-top: 30px;
+    margin-left: 30px;
+    cursor: pointer;
+    appearance: none;
+    background-color: inherit;
+    
 }
+
+.checkboxes {
+  width: 20px;
+  height: 20px;
+  margin-top: 20px;
+  
+}
+
