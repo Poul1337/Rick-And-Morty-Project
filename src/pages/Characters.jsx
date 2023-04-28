@@ -1,14 +1,20 @@
-import useLogic from '../fetchCorrectData';
-import CollapsibleTable from '../Components/CollapsibleTable';
+
+import CollapsibleTable from '../Components/table/CollapsibleTable';
 import React, { useState, useEffect } from 'react';
+import useLogic from '../hooks/UseCorrectData';
+import CollapsibleTable from '../Components/table/CollapsibleTable';
+import LoadingSpinner from '../Components/table/LoadingSpinner';
 
 
 const Characters = () => {
-  const data = useLogic();
+  const { data, isLoading } = useLogic();
   const [charactersData, setCharactersData] = useState([]);
   const [selectedIndexes, setSelectedIndexes] = useState([]);
 
-
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  return 
 
 
   useEffect(() => {
@@ -25,7 +31,7 @@ const Characters = () => {
       const updatedData = newData.map((row, i) => ({...row, id: i + 1 }));
     
     setCharactersData(updatedData);
-  };
+  }
 
 
 
@@ -48,7 +54,7 @@ const Characters = () => {
         return [...prevIndexes, parseInt(parent)];
       }
     });
-  }
+  
 
 
   return (
@@ -71,6 +77,7 @@ const Characters = () => {
       />
     </h1>
   );
-};
-
+}}
 export default Characters;
+
+

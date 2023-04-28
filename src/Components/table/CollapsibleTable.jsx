@@ -13,9 +13,10 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Checkbox from '@mui/material/Checkbox';
 import mainLogo from '../img/delete.png';
-
+import SearchInput from '../input/SearchInput';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 export default function CollapsibleTable(props) {
   const [page, setPage] = useState(0);
@@ -29,14 +30,13 @@ export default function CollapsibleTable(props) {
   
 
   const fetchCharacterData = (id) => {
-    fetch(`https://rickandmortyapi.com/api/characters/${id}`)
+    fetch(`${import.meta.env.VITE_BASE_URL}/${id}`)
       .then((response) => response.json())
       .then((response) => {
         setCharacterData(response);
         console.log(characterData);
       });
   };
-
 
 
   const handleChangePage = (event, newPage) => {
@@ -51,6 +51,7 @@ export default function CollapsibleTable(props) {
   const emptyRows =
     rowsPerPage -
     Math.min(rowsPerPage, props.data?.length - page * rowsPerPage);
+
 
     const handleSelect = (event, id) => {
       const currentIndex = checkedRows.indexOf(id);
@@ -68,8 +69,10 @@ export default function CollapsibleTable(props) {
 
 
 
+
   return (
-    <>
+    <div className="table">
+      <SearchInput />
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>
@@ -200,13 +203,13 @@ export default function CollapsibleTable(props) {
         <TablePagination
           rowsPerPageOptions={[5, 10, 20]}
           component="div"
-          count={props.data?.length}
+          count={props?.data?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </TableContainer>
-    </>
+    </div>
   );
 }

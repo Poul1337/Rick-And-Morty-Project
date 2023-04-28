@@ -1,13 +1,17 @@
 import useLogic from '../fetchCorrectData';
 import CollapsibleTable from '../Components/CollapsibleTable';
+import LoadingSpinner from '../Components/table/LoadingSpinner';
 import React, { useState, useEffect } from 'react';
 
 
 const Episodes = () => {
-  const data = useLogic();
+  const { data, isLoading } = useLogic();
   const [episodesData, setEpisodesData] = useState([]);
   const [selectedIndexes, setSelectedIndexes] = useState([]);
 
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   useEffect(() => {
     setEpisodesData(data);
@@ -48,10 +52,10 @@ const Episodes = () => {
   return (
     <h1>
       <CollapsibleTable
-        data={episodesData}
-        handleDeleteRow={handleDeleteRow}
-        handleDeleteSelectedRows={handleDeleteSelectedRows}
-        getChecked={getChecked}
+           data={episodesData}
+           handleDeleteRow={handleDeleteRow}
+           handleDeleteSelectedRows={handleDeleteSelectedRows}
+           getChecked={getChecked}
         firstTh="Name"
         secondTh="Air date"
         thirdTh="Episode"

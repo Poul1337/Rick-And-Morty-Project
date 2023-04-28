@@ -52,11 +52,7 @@ const ThemeSwitch = () => {
     },
   }));
 
-  return (
-    <FormControlLabel
-      control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-    />
-  );
+  return <FormControlLabel control={<MaterialUISwitch sx={{ m: 1 }} />} />;
 };
 
 export default ThemeSwitch;
