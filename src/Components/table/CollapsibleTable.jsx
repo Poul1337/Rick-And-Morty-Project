@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Checkbox from '@mui/material/Checkbox';
+import mainLogo from '../img/delete.png';
 import SearchInput from '../input/SearchInput';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -23,6 +23,11 @@ export default function CollapsibleTable(props) {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [characterData, setCharacterData] = useState(null);
   const [openRows, setOpenRows] = useState([]);
+  const [checkedRows, setCheckedRows] = useState([]);
+
+
+
+  
 
   const fetchCharacterData = (id) => {
     fetch(`${import.meta.env.VITE_BASE_URL}/${id}`)
@@ -32,6 +37,7 @@ export default function CollapsibleTable(props) {
         console.log(characterData);
       });
   };
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -46,12 +52,33 @@ export default function CollapsibleTable(props) {
     rowsPerPage -
     Math.min(rowsPerPage, props.data?.length - page * rowsPerPage);
 
+
+    const handleSelect = (event, id) => {
+      const currentIndex = checkedRows.indexOf(id);
+      const newCheckedRows = [...checkedRows];
+    
+      if (currentIndex === -1) {
+        newCheckedRows.push(id);
+      } else {
+        newCheckedRows.splice(currentIndex, 1);
+      }
+    
+      setCheckedRows(newCheckedRows);
+    };
+
+
+
+
+
   return (
     <div className="table">
       <SearchInput />
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>
+                  <button className='btnDeleteSelected'>
+                  <img onClick={props.handleDeleteSelectedRows}  src={mainLogo} alt="delete" />
+                  </button>
             <TableRow>
               <TableCell />
               <TableCell>{props.firstTh}</TableCell>
@@ -66,11 +93,19 @@ export default function CollapsibleTable(props) {
                   page * rowsPerPage + rowsPerPage
                 )
               : props.data
-            )?.map((data) => (
+            )?.map((data, index) => (
               <>
-                <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+                <TableRow id={`${data.id}`} sx={{ '& > *': { borderBottom: 'unset' } }}>
                   <TableCell>
-                    <Checkbox color="default" />
+                  <input
+                  className='checkboxes'
+                  type="checkbox"
+                  value={data.id}
+                  color="default"
+                  onChange={(event) => handleSelect(event, data.id)}
+                  checked={checkedRows.indexOf(data.id) !== -1}
+                  onClick={props.getChecked}
+                />
                     <IconButton
                       aria-label="expand row"
                       size="small"
@@ -106,6 +141,9 @@ export default function CollapsibleTable(props) {
                   <TableCell>
                     {data.species || data.dimension || data.episode}
                   </TableCell>
+                  <button className='btnDelete'>
+                  <img className='btnDelete' onClick={props.handleDeleteRow}  src={mainLogo} alt="delete" />
+                  </button>
                 </TableRow>
 
                 <TableRow>
