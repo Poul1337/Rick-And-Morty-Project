@@ -6,6 +6,7 @@ import { useState } from 'react';
 export default function SearchInput() {
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
+
   return (
     <Box
       sx={{
@@ -17,16 +18,15 @@ export default function SearchInput() {
       onKeyPress={(key) => {
         if (key.code === 'Enter') {
           setOpen(true);
+          setInputValue(key.target.value);
+          key.target.value = '';
         }
       }}
     >
       <TextField
         id="outlined-basic"
-        label="Search"
+        label="Search for character you like"
         variant="outlined"
-        onChange={(key) => {
-          setInputValue(key.target.value);
-        }}
       />
       <SearchResult open={open} setOpen={setOpen} value={inputValue} />
     </Box>
