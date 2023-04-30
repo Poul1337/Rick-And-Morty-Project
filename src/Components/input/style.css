@@ -1,0 +1,21 @@
+#searchDiv {
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 1%;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  background-color: white;
+  z-index: 999;
+}
+
+#closeBtn {
+  display: flex;
+  justify-content: end;
+}
+#detailsContent {
+  display: flex;
+  flex-direction: row;
+}
