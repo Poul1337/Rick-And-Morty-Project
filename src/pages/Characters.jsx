@@ -1,5 +1,4 @@
 
-import CollapsibleTable from '../Components/table/CollapsibleTable';
 import React, { useState, useEffect } from 'react';
 import useLogic from '../hooks/UseCorrectData';
 import CollapsibleTable from '../Components/table/CollapsibleTable';
@@ -8,18 +7,16 @@ import LoadingSpinner from '../Components/table/LoadingSpinner';
 
 const Characters = () => {
   const { data, isLoading } = useLogic();
-  const [charactersData, setCharactersData] = useState([]);
+  const [charactersData, setCharactersData] = useState([data?.data?.results]);
   const [selectedIndexes, setSelectedIndexes] = useState([]);
 
   if (isLoading) {
     return <LoadingSpinner />;
   }
-  return 
-
 
   useEffect(() => {
-    setCharactersData(data);
-  }, [data]);
+    setCharactersData(data?.data?.results);
+  }, [data?.data?.results]);
 
   
 
@@ -37,7 +34,6 @@ const Characters = () => {
 
   const handleDeleteSelectedRows = () => {
     const finalData = charactersData.filter(e => {
-      console.log(typeof selectedIndexes[0],'selected') 
 
       return !selectedIndexes.includes(e.id);
     });
@@ -46,16 +42,14 @@ const Characters = () => {
 
   const getChecked = (e) => {
     const parent = e.target.value
-    console.log(parent,'parent')
     setSelectedIndexes(prevIndexes => {
       if (prevIndexes.includes(parent)) {
         return prevIndexes.filter(index => index !== parent);
       } else {
         return [...prevIndexes, parseInt(parent)];
       }
-    });
-  
-
+    })
+  }
 
   return (
     <h1>
@@ -77,7 +71,7 @@ const Characters = () => {
       />
     </h1>
   );
-}}
+}
 export default Characters;
 
 

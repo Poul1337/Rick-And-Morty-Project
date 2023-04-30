@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import mainLogo from '../img/delete.png';
+import mainLogo from '/src/img/delete.png';
 import SearchInput from '../input/SearchInput';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';

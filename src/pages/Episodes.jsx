@@ -1,12 +1,12 @@
-import useLogic from '../fetchCorrectData';
-import CollapsibleTable from '../Components/CollapsibleTable';
+import useLogic from '../hooks/UseCorrectData';
+import CollapsibleTable from '../Components/table/CollapsibleTable';
 import LoadingSpinner from '../Components/table/LoadingSpinner';
 import React, { useState, useEffect } from 'react';
 
 
 const Episodes = () => {
   const { data, isLoading } = useLogic();
-  const [episodesData, setEpisodesData] = useState([]);
+  const [episodesData, setEpisodesData] = useState([data?.data?.results]);
   const [selectedIndexes, setSelectedIndexes] = useState([]);
 
   if (isLoading) {
@@ -14,8 +14,8 @@ const Episodes = () => {
   }
 
   useEffect(() => {
-    setEpisodesData(data);
-  }, [data]);
+    setEpisodesData(data?.data?.results);
+  }, [data?.data?.results]);
 
 
   const handleDeleteRow = (e) => {
@@ -31,7 +31,6 @@ const Episodes = () => {
 
   const handleDeleteSelectedRows = () => {
     const finalData = episodesData.filter(e => {
-      console.log(typeof selectedIndexes[0],'selected') 
 
       return !selectedIndexes.includes(e.id);
     });
@@ -40,7 +39,6 @@ const Episodes = () => {
 
   const getChecked = (e) => {
     const parent = e.target.value
-    console.log(parent,'parent')
     setSelectedIndexes(prevIndexes => {
       if (prevIndexes.includes(parent)) {
         return prevIndexes.filter(index => index !== parent);

@@ -6,22 +6,17 @@ import React, { useState, useEffect } from 'react';
 
 const Locations = () => {
   const { data, isLoading } = useLogic();
-  const [locationsData, setLocationsData] = useState([]);
+  const [locationsData, setLocationsData] = useState([data?.data?.results]);
   const [selectedIndexes, setSelectedIndexes] = useState([]);
 
-  useEffect(() => {
-    setLocationsData(data);
-  }, [data]);
 
-  const handleSelect = (e) => {
-    const parent = e.target.parentElement.parentElement.id
-    const newData = [...locationsData];
-    const finalData = newData.map((e) => ({ ...e, selected: false }));
-    const selectedRow = finalData.find((e) => e.id == parent);
-    console.log(finalData,'finaldata')
-    selectedRow.selected = true;
-    setLocationsData(finalData);
-  }; 
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  useEffect(() => {
+    setLocationsData(data?.data?.results);
+  }, [data?.data?.results]);
+
 
   const handleDeleteRow = (e) => {
     const parent = e.target.parentElement.parentElement.id
@@ -35,7 +30,6 @@ const Locations = () => {
 
   const handleDeleteSelectedRows = () => {
     const finalData = locationsData.filter(e => {
-      console.log(typeof selectedIndexes[0],'selected') 
 
       return !selectedIndexes.includes(e.id);
     });
@@ -44,7 +38,6 @@ const Locations = () => {
 
   const getChecked = (e) => {
     const parent = e.target.value
-    console.log(parent,'parent')
     setSelectedIndexes(prevIndexes => {
       if (prevIndexes.includes(parent)) {
         return prevIndexes.filter(index => index !== parent);
@@ -56,7 +49,10 @@ const Locations = () => {
   return (
     <h1>
       <CollapsibleTable
-        data={data}
+           data={locationsData}
+           handleDeleteRow={handleDeleteRow}
+           handleDeleteSelectedRows={handleDeleteSelectedRows}
+           getChecked={getChecked}
         firstTh="Name"
         secondTh="Type"
         thirdTh="Dimension"
