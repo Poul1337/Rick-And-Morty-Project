@@ -10,13 +10,16 @@ const Characters = () => {
   const [charactersData, setCharactersData] = useState([data?.data?.results]);
   const [selectedIndexes, setSelectedIndexes] = useState([]);
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
 
   useEffect(() => {
     setCharactersData(data?.data?.results);
   }, [data?.data?.results]);
+
+  
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
 
   
 

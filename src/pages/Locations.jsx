@@ -9,14 +9,16 @@ const Locations = () => {
   const [locationsData, setLocationsData] = useState([data?.data?.results]);
   const [selectedIndexes, setSelectedIndexes] = useState([]);
 
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
+  
   useEffect(() => {
     setLocationsData(data?.data?.results);
   }, [data?.data?.results]);
 
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+ 
 
   const handleDeleteRow = (e) => {
     const parent = e.target.parentElement.parentElement.id
