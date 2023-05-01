@@ -13,12 +13,10 @@ html {
   height: 100%;
 }
 
-
-
 .btnDelete {
   display: flex;
-justify-content: center;
-align-items: start;
+  justify-content: center;
+  align-items: start;
   width: 35px;
   height: 35px;
   border: none;
@@ -28,38 +26,33 @@ align-items: start;
   cursor: pointer;
   appearance: none;
   background-color: inherit;
-  
 }
 
 .btnDeleteSelected {
   display: flex;
   justify-content: center;
   align-items: start;
-    width: 15px;
-    height: 15px;
-    border: none;
-    padding: none;
-    margin-top: 30px;
-    margin-left: 30px;
-    cursor: pointer;
-    appearance: none;
-    background-color: inherit;
-    
+  width: 15px;
+  height: 15px;
+  border: none;
+  padding: none;
+  margin-top: 30px;
+  margin-left: 30px;
+  cursor: pointer;
+  appearance: none;
+  background-color: inherit;
 }
 
 .checkboxes {
   width: 20px;
   height: 20px;
   margin-top: 20px;
-  
 }
-
-
 
 .btnDelete {
   display: flex;
-justify-content: center;
-align-items: start;
+  justify-content: center;
+  align-items: start;
   width: 35px;
   height: 35px;
   border: none;
@@ -69,31 +62,27 @@ align-items: start;
   cursor: pointer;
   appearance: none;
   background-color: inherit;
-  
 }
-
 
 .btnDeleteSelected {
   display: flex;
   justify-content: center;
   align-items: start;
-    width: 15px;
-    height: 15px;
-    border: none;
-    padding: none;
-    margin-top: 30px;
-    margin-left: 30px;
-    cursor: pointer;
-    appearance: none;
-    background-color: inherit;
-    
+  width: 15px;
+  height: 15px;
+  border: none;
+  padding: none;
+  margin-top: 30px;
+  margin-left: 30px;
+  cursor: pointer;
+  appearance: none;
+  background-color: inherit;
 }
 
 .checkboxes {
   width: 20px;
   height: 20px;
   margin-top: 20px;
-  
 }
 .table {
   display: flex;
@@ -105,5 +94,15 @@ align-items: start;
 .spinner {
   display: flex;
   justify-content: center;
-  margin-top: 15%;
+
+  animation: rotate 5s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
 }

@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <div style={homePageStyle}>
-      <img src={rotatePic} className="rotate"></img>
+      <img src={rotatePic} className="spinner"></img>
       <h1
         style={{ fontFamily: 'Delicious Handrawn, cursive', marginTop: '45px' }}
       >
