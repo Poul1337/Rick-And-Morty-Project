@@ -94,7 +94,6 @@ html {
 .spinner {
   display: flex;
   justify-content: center;
-
   animation: rotate 5s infinite linear;
 }
 
